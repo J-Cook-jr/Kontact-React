@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div className="container">
         <h3>Contacts</h3>
-        <ContactForm />
+        <ContactForm/>
       </div>
     );
   }
