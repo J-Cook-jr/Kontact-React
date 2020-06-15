@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
-import Input, { Component } from './Input';
+import Input from './Input';
+import Select from './Select';
+import CheckBox from './CheckBox';
+import Button from './Button';
+
 
 export default class ContactForm extends Component {
     constructor(props) {
@@ -17,8 +21,6 @@ export default class ContactForm extends Component {
                 zip: '',
                 gender: '',
                 expertise: '',
-
-
             },
 
             genderOptions: ['Male', 'Female', 'Others'],
@@ -27,6 +29,7 @@ export default class ContactForm extends Component {
         }
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleClearForm = this.handleClearForm.bind(this);
+        this.handleInput = this.handleInput.bind(this);
     }
 
     /* This life cycle hook gets executed when the component mounts */
@@ -36,6 +39,19 @@ export default class ContactForm extends Component {
     }
     handleClearForm() {
         // Logic for resetting the form
+    }
+
+    handleInput(e) {
+        let value = e.target.value;
+        let name = e.target.name;
+        this.setState(prevState => {
+            return {
+                newUser: {
+                    ...prevState.newUser, [name]: value
+                }
+            }
+        }, () => console.log(this.state.newUser)
+        )
     }
     render() {
         return (
@@ -91,7 +107,7 @@ export default class ContactForm extends Component {
 
                 <Input type={'number'}
                     title={'Zip Code'}
-                    name={'zip code'}
+                    name={'zip'}
                     value={this.state.newUser.zip}
                     placeholder={'Enter your zipcode'}
                     handleChange={this.handleZipCode}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 export default class Input extends Component {
-    render() {
+    render(){
         const Input = (props) => {
             return (
                 <div className="form-group">
@@ -18,6 +18,7 @@ export default class Input extends Component {
                 </div>
             );
         }
+        return;
 
     }
 };
