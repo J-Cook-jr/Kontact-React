@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import Input from './Input';
 import Select from './Select';
 import CheckBox from './CheckBox';
@@ -21,8 +20,9 @@ export default class ContactForm extends Component {
                 zip: '',
                 gender: '',
                 expertise: '',
+                skills: [],
             },
-
+            contacts:[],
             genderOptions: ['Male', 'Female', 'Others'],
             skillOptions: ['Programming', 'Development', 'Design', 'Testing']
 
@@ -35,11 +35,28 @@ export default class ContactForm extends Component {
 
     /* This life cycle hook gets executed when the component mounts */
 
-    handleFormSubmit() {
-        // Form submission logic
+    handleFormSubmit(e) {
+        e.preventDefault();
+        let userData = this.state.newUser;
+        this.setState({contacts:[...this.state.contacts,userData]})
+
     }
-    handleClearForm() {
+    handleClearForm(e) {
         // Logic for resetting the form
+        e.preventDefault();
+        this.setState({
+            newUser: {
+                name: '',
+                email: '',
+                phone: '',
+                address: '',
+                city: '',
+                state: '',
+                zip: '',
+                gender: '',
+                skills: []
+            },
+        })
     }
 
     handleInput(e) {
@@ -59,20 +76,22 @@ export default class ContactForm extends Component {
 
         const newSelection = e.target.value;
         let newSelectionArray;
-    
-        if(this.state.newUser.skills.indexOf(newSelection) > -1) {
-          newSelectionArray = this.state.newUser.skills.filter(s => s !== newSelection)
+
+        if (this.state.newUser.skills.indexOf(newSelection) > -1) {
+            newSelectionArray = this.state.newUser.skills.filter(s => s !== newSelection)
         } else {
-          newSelectionArray = [...this.state.newUser.skills, newSelection];
+            newSelectionArray = [...this.state.newUser.skills, newSelection];
         }
-    
-          this.setState( prevState => ({ newUser:
-            {...prevState.newUser, skills: newSelectionArray }
-          })
-          )
+
+        this.setState(prevState => ({
+            newUser:
+                { ...prevState.newUser, skills: newSelectionArray }
+        })
+        )
     }
     render() {
         return (
+            <div>
             <form className="container" onSubmit={this.handleFormSubmit}>
 
                 <Input type={'text'}
@@ -134,15 +153,49 @@ export default class ContactForm extends Component {
                 <Select title={'Gender'}
                     name={'gender'}
                     options={this.state.genderOptions}
-                    value={this.state.newUser.gender}
+                    value={this.state.gender}
                     placeholder={'Select Gender'}
                     handleChange={this.handleInput}
                 /> {/* Age Selection */}
 
-                <CheckBox /> {/* List of Skills (eg. Programmer, developer) */}
-                <Button /> { /*Submit */}
-                <Button /> {/* Clear the form */}
+                <CheckBox title={'Skills'}
+                    name={'skills'}
+                    options={this.state.skillOptions}
+                    selectedOptions={this.state.newUser.skills}
+                    handleChange={this.handleSkillsCheckBox}
+                /> {/* List of Skills (eg. Programmer, developer) */}
+
+                <Button title={'Submit'}
+                    action={this.handleFormSubmit}
+                    style={{color: 'Green'}}
+                /> { /*Submit */}
+
+                <Button title={'Clear'}
+                    action={this.handleClearForm}
+                    style={{color: 'Red'}}
+                /> {/* Clear the form */}
+            
             </form>
+            <div>
+                {this.state.contacts.map(contact => {
+                    return(
+                        <div>
+                            <p>{contact.name}</p>
+                            <p>{contact.email}</p>
+                            <p>{contact.phone}</p>
+                            <p>{contact.address}</p>
+                            <p>{contact.city}</p>
+                            <p>{contact.state}</p>
+                            <p>{contact.zip}</p>
+                            <p>{contact.gender}</p>
+                            <p>{contact.skills}</p>
+                        </div>
+                    )
+                })}
+            </div>
+            </div>
+            
+
 
         );
     }
