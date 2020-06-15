@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Input, { Component } from './Input';
+
 export default class ContactForm extends Component {
     constructor(props) {
         super(props);
@@ -12,10 +14,10 @@ export default class ContactForm extends Component {
                 address: '',
                 city: '',
                 state: '',
-                zip:'',
+                zip: '',
                 gender: '',
                 expertise: '',
-        
+
 
             },
 
@@ -39,13 +41,62 @@ export default class ContactForm extends Component {
         return (
             <form className="container" onSubmit={this.handleFormSubmit}>
 
-                <Input /> {/* Name of the user */}
-                <Input /> {/* Input for Age */}
-                <Input /> {/* Input for Age */}
-                <Input /> {/* Input for Age */}
-                <Input /> {/* Input for Age */}
-                <Input /> {/* Input for Age */}
-                <Input /> {/* Input for Age */}
+                <Input type={'text'}
+                    title={'Full Name'}
+                    name={'name'}
+                    value={this.state.newUser.name}
+                    placeholder={'Enter your name'}
+                    handleChange={this.handleFullName}
+                /> {/* Name of the user */}
+
+                <Input type={'text'}
+                    title={'Email'}
+                    name={'email'}
+                    value={this.state.newUser.email}
+                    placeholder={'Enter your email'}
+                    handleChange={this.handleEmail}
+                /> {/* User email*/}
+
+                <Input type={'number'}
+                    title={'Phone Number'}
+                    name={'phone'}
+                    value={this.state.newUser.phone}
+                    placeholder={'Enter your phone number'}
+                    handleChange={this.handlePhoneNumber}
+                /> {/* User phone number */}
+
+                <Input type={'text'}
+                    title={'Address'}
+                    name={'address'}
+                    value={this.state.newUser.address}
+                    placeholder={'Enter your address'}
+                    handleChange={this.handleAddress}
+                /> {/* User address */}
+
+                <Input type={'text'}
+                    title={'City'}
+                    name={'city'}
+                    value={this.state.newUser.city}
+                    placeholder={'Enter your city'}
+                    handleChange={this.handleCity}
+                /> {/* City of the user */}
+
+                <Input type={'text'}
+                    title={'State'}
+                    name={'state'}
+                    value={this.state.newUser.state}
+                    placeholder={'Enter your state'}
+                    handleChange={this.handleState}
+                /> {/* State of the user */}
+
+                <Input type={'number'}
+                    title={'Zip Code'}
+                    name={'zip code'}
+                    value={this.state.newUser.zip}
+                    placeholder={'Enter your zipcode'}
+                    handleChange={this.handleZipCode}
+                /> {/* Zip Code of the user */}
+
                 <Select /> {/* Gender Selection */}
                 <CheckBox /> {/* List of Skills (eg. Programmer, developer) */}
                 <Button /> { /*Submit */}
