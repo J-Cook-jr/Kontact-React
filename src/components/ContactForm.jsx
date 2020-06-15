@@ -30,6 +30,7 @@ export default class ContactForm extends Component {
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleClearForm = this.handleClearForm.bind(this);
         this.handleInput = this.handleInput.bind(this);
+        this.handleSkillsCheckBox = this.handleSkillsCheckBox.bind(this);
     }
 
     /* This life cycle hook gets executed when the component mounts */
@@ -52,6 +53,23 @@ export default class ContactForm extends Component {
             }
         }, () => console.log(this.state.newUser)
         )
+    }
+
+    handleSkillsCheckBox(e) {
+
+        const newSelection = e.target.value;
+        let newSelectionArray;
+    
+        if(this.state.newUser.skills.indexOf(newSelection) > -1) {
+          newSelectionArray = this.state.newUser.skills.filter(s => s !== newSelection)
+        } else {
+          newSelectionArray = [...this.state.newUser.skills, newSelection];
+        }
+    
+          this.setState( prevState => ({ newUser:
+            {...prevState.newUser, skills: newSelectionArray }
+          })
+          )
     }
     render() {
         return (
