@@ -62,7 +62,7 @@ export default class ContactForm extends Component {
                     name={'name'}
                     value={this.state.newUser.name}
                     placeholder={'Enter your name'}
-                    handleChange={this.handleFullName}
+                    handleChange={this.handleInput}
                 /> {/* Name of the user */}
 
                 <Input type={'text'}
@@ -70,7 +70,7 @@ export default class ContactForm extends Component {
                     name={'email'}
                     value={this.state.newUser.email}
                     placeholder={'Enter your email'}
-                    handleChange={this.handleEmail}
+                    handleChange={this.handleInput}
                 /> {/* User email*/}
 
                 <Input type={'number'}
@@ -78,7 +78,7 @@ export default class ContactForm extends Component {
                     name={'phone'}
                     value={this.state.newUser.phone}
                     placeholder={'Enter your phone number'}
-                    handleChange={this.handlePhoneNumber}
+                    handleChange={this.handleInput}
                 /> {/* User phone number */}
 
                 <Input type={'text'}
@@ -86,7 +86,7 @@ export default class ContactForm extends Component {
                     name={'address'}
                     value={this.state.newUser.address}
                     placeholder={'Enter your address'}
-                    handleChange={this.handleAddress}
+                    handleChange={this.handleInput}
                 /> {/* User address */}
 
                 <Input type={'text'}
@@ -94,7 +94,7 @@ export default class ContactForm extends Component {
                     name={'city'}
                     value={this.state.newUser.city}
                     placeholder={'Enter your city'}
-                    handleChange={this.handleCity}
+                    handleChange={this.handleInput}
                 /> {/* City of the user */}
 
                 <Input type={'text'}
@@ -102,7 +102,7 @@ export default class ContactForm extends Component {
                     name={'state'}
                     value={this.state.newUser.state}
                     placeholder={'Enter your state'}
-                    handleChange={this.handleState}
+                    handleChange={this.handleInput}
                 /> {/* State of the user */}
 
                 <Input type={'number'}
@@ -110,10 +110,17 @@ export default class ContactForm extends Component {
                     name={'zip'}
                     value={this.state.newUser.zip}
                     placeholder={'Enter your zipcode'}
-                    handleChange={this.handleZipCode}
+                    handleChange={this.handleInput}
                 /> {/* Zip Code of the user */}
 
-                <Select /> {/* Gender Selection */}
+                <Select title={'Gender'}
+                    name={'gender'}
+                    options={this.state.genderOptions}
+                    value={this.state.newUser.gender}
+                    placeholder={'Select Gender'}
+                    handleChange={this.handleInput}
+                /> {/* Age Selection */}
+
                 <CheckBox /> {/* List of Skills (eg. Programmer, developer) */}
                 <Button /> { /*Submit */}
                 <Button /> {/* Clear the form */}
